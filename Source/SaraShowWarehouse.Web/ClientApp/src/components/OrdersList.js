@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-//import List from "../lib/List";
+import Modal from 'react-modal';
+//import OrderDetailsModal from "./orderDetailsModal";
 
 export class Orders extends Component {
     displayName = Orders.name
 
     constructor(props) {
       super(props);
-      this.state = { orders: [], loading: true };
+        this.state = {
+            orders: [],
+            loading: true,
+            modalOpen: false,
+            order: {}
+        };
 
       fetch('api/order')
           .then(response => response.json())
@@ -15,15 +21,64 @@ export class Orders extends Component {
           });
     }
 
-    renderOrders = orders => {
+    processOrder = (id) => {
+        
+        fetch('api/{id}')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ orders: data, loading: false });
+            });
+
+    }
+
+    getOrderInfo = order => {
+        this.setState({ order: order, openModal: true });
+    }
+
+    closeModal () {
+        this.setState({ order: {}, openModal: false });
+    }
+
+    renderProcessButton = order => {
         return (
-            orders.map(order =>
-                <ul key={order.orderId}>
-                    <ui>{order.productId}</ui>
-                    :
-                    <ui>{order.productAmount}</ui>
-                </ul>
+            <button
+                type="submit"
+                onClick={this.processOrder}
+                name="processOrder"
+                className="btn btn-primary">
+                PROCESS ORDER
+            </button>
             )
+    }
+
+
+    renderOrders = orders => {
+        
+        return (
+            <table className="table table-striped">
+                <thead className="thead-dark">
+                    <tr>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Description</th>
+                        <th scope="col">Order Type</th>
+                        <th scope="col">Amount Ordered</th>
+                        <th scope="col">Date Processed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders.map(order =>
+                        <tr onClick={() => this.getOrderInfo(order)}> 
+                            <td>{order.orderId ? order.orderId : null}</td>
+                            <td>{order.productName ? order.productName : null}</td>
+                            <td>{order.productDescription ? order.productDescription : null}</td>
+                            <td>{order.orderType == 0 ? "Receipt" : "Invoice"}</td>
+                            <td>{order.productAmount ? order.productAmount : null}</td>
+                            <td>{order.proccessedAt ? order.proccessedAt : this.renderProcessButton(order)}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
         )
     }
 
@@ -40,5 +95,9 @@ export class Orders extends Component {
         );
     }
 
-   }
+}
+
+               //<Modal isOpen={this.state.openModal} onClose={this.closeModal}>
+                //    <OrderDetailsModal title="Order Details" order={this.state.order} />
+                //</Modal>
     

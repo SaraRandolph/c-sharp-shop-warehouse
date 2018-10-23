@@ -27,15 +27,17 @@ namespace SaraShowWarehouse.Web.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetOrdersById(int id)
+        public IActionResult GetOrderById(int id)
         {
             return Ok(_orderService.GetOrderById(id));
         }
 
-        [HttpPost("close")]
-        public IActionResult ProcessOrder([FromBody]Order order)
+        [HttpPost]
+        public IActionResult ProcessOrder([FromBody]int id)
         {
+            var order = _orderService.GetOrderById(id);
             _orderService.ProcessOrder(order);
+
             return Ok();
         }
 

@@ -31,6 +31,9 @@ namespace SaraShopWarehouse.Data
                 OrderId = orderId,
                 ProductId = 1,
                 ProductAmount = 5,
+                OrderType = OrderEnum.Receipt,
+                ProductName = "Bat Wings",
+                ProductDescription = "Scary, black, crunchy bat wings. Perfect for soups or potions.",
                 CreatedAt = DateTimeOffset.Now.AddDays(-1),
             };
         }
@@ -47,6 +50,9 @@ namespace SaraShopWarehouse.Data
                 OrderId = data.OrderId,
                 ProductId = data.ProductId,
                 ProductAmount = data.ProductAmount,
+                ProductDescription = data.ProductDescription,
+                ProductName = data.ProductName,
+                OrderType = data.OrderType,
                 CreatedAt = DateTimeOffset.Now,
                 ProcessedAt = null
             };
