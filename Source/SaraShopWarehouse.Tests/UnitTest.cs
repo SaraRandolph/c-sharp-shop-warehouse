@@ -28,7 +28,7 @@ namespace SaraShopWarehouse.Tests
             Assert.IsTrue(true);
         }
 
-        public void Cant_Process_Order_Already_Processes()
+        public void Cant_Process_Order_Already_Processed()
         {
             Assert.IsTrue(true);
         }

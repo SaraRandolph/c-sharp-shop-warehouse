@@ -10,11 +10,11 @@ using SaraShopWarehouse.RazorWeb.Models;
 
 namespace SaraShopWarehouse.RazorWeb.Controllers
 {
-    public class OrdersController : Controller
+    public class OrderController : Controller
     {
         private readonly OrderService _os;
 
-        public OrdersController(OrderService os)
+        public OrderController(OrderService os)
         {
             _os = os;
         }
@@ -44,8 +44,6 @@ namespace SaraShopWarehouse.RazorWeb.Controllers
         }
 
         // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Order order)
@@ -70,15 +68,22 @@ namespace SaraShopWarehouse.RazorWeb.Controllers
         }
 
         //// POST: Order/Edit/5
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ProductName,ProductDescription,ProductAmount")] Order order)
+        public async Task<IActionResult> Edit([Bind("Id,ProductId,ProductAmount,OrderType,ProductName,ProductDescription,CreatedAt,ProcessedAt")] Order order)
         {
             _os.UpdateOrder(order);
             return View(order);
         }
 
-     }
+        [HttpPost]
+        public IActionResult ProcessOrder([FromForm]int id)
+        {
+
+            var order = _os.GetOrderById(id);
+            _os.ProcessOrder(order);
+            return RedirectToAction("Index", id);
+        }
+
+    }
 }

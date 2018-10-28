@@ -46,8 +46,8 @@ namespace SaraShopWarehouse.RazorWeb
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<SaraShopWarehouseWebContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SaraShopWarehouseWebContext")));
+            //services.AddDbContext<SaraShopWarehouseWebContext>(options =>
+            //        options.UseSqlServer(Configuration.GetConnectionString("SaraShopWarehouseWebContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +71,7 @@ namespace SaraShopWarehouse.RazorWeb
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Order}/{action=Index}/{id?}");
             });
         }
     }

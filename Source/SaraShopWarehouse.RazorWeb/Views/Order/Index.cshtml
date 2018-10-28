@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SaraShopWarehouse.Entities.Order>
+﻿@model IEnumerable<SaraShopWarehouse.Entities.IOrder>
 
 @{
     ViewData["Title"] = "Index";
@@ -28,9 +28,6 @@
                 @Html.DisplayNameFor(model => model.ProductDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreatedAt)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ProcessedAt)
             </th>
             <th></th>
@@ -55,15 +52,19 @@
                 @Html.DisplayFor(modelItem => item.ProductDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.ProcessedAt)
             </td>
             <td>
+                @using (Html.BeginForm("ProcessOrder", "Order", item.Id, FormMethod.Post))
+                {
+                    <input hidden value="@item.Id" name="id" />
+                    <button type="submit" disabled="@(item.ProcessedAt)">Proccess Order</button>
+                }
+            </td>
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+
             </td>
         </tr>
 }
