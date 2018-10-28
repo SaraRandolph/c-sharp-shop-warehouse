@@ -2,18 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace SaraShopWarehouse.Data
 {
-
-    public interface IOrderRepo
-    {
-        Order GetOrderById(int id);
-        void UpdateOrder(Order o);
-        List<Order> GetAllOrders();
-        Order CreateOrder(Order data);
-        IEnumerable<Order> GetUnProcessedOrders();
-    }
 
     public class OrderRepo : IOrderRepo
     {
@@ -24,61 +16,50 @@ namespace SaraShopWarehouse.Data
             _db = db;
         }
 
-        public Order GetOrderById(int orderId)
+        public IOrder GetOrderById(int id)
         {
-            return new Order
+            return SeedData.Orders.Find(b => b.Id == id);
+        }
+
+        public IOrder UpdateOrder(IOrder orderToUpdate)
+        {
+            var order = GetOrderById(orderToUpdate.Id);
+            if (order == null) { throw new Exception("Order not found, Id not located"); }
+
+            order.ProductName = orderToUpdate.ProductName;
+            order.ProductDescription = orderToUpdate.ProductDescription;
+            order.ProductAmount = orderToUpdate.ProductAmount;
+
+            return order;
+        }
+
+        public IOrder CreateOrder(Order newOrder)
+        {
+            //TODO figure how to handle next index
+            int newIndex = SeedData.Orders.Max(x => x.Id);
+            newOrder.Id = newIndex + 1;
+            SeedData.Orders.Add(newOrder);
+            return newOrder;
+        }
+
+        public List<IOrder> GetAllOrders()
+        {
+            return SeedData.Orders;
+        }
+
+        public List<IOrder> GetUnProcessedOrders()
+        {
+            List<IOrder> unProcessedOrders = new List<IOrder>();
+
+            foreach (var order in SeedData.Orders)
             {
-                OrderId = orderId,
-                ProductId = 1,
-                ProductAmount = 5,
-                OrderType = OrderEnum.Receipt,
-                ProductName = "Bat Wings",
-                ProductDescription = "Scary, black, crunchy bat wings. Perfect for soups or potions.",
-                CreatedAt = DateTimeOffset.Now.AddDays(-1),
-            };
+                if(order.ProcessedAt == null)
+                {
+                    unProcessedOrders.Add(order);
+                }
+            }
+            return unProcessedOrders;
         }
-
-        public void UpdateOrder(Order orderToUpdate)
-        {
-            Console.WriteLine("dis dat shit you wanted");
-        }
-
-        public Order CreateOrder(Order data)
-        {
-            return new Order
-            {
-                OrderId = data.OrderId,
-                ProductId = data.ProductId,
-                ProductAmount = data.ProductAmount,
-                ProductDescription = data.ProductDescription,
-                ProductName = data.ProductName,
-                OrderType = data.OrderType,
-                CreatedAt = DateTimeOffset.Now,
-                ProcessedAt = null
-            };
-        }
-
-        public List<Order> GetAllOrders()
-        {
-            return new List<Order>
-            {
-                GetOrderById(1),
-                GetOrderById(2),
-                GetOrderById(3),
-            };
-        }
-
-        public IEnumerable<Order> GetUnProcessedOrders()
-        {
-            return new List<Order>
-            {
-                GetOrderById(1),
-                GetOrderById(2),
-                GetOrderById(3),
-            };
-        }
-
-
 
     }
 

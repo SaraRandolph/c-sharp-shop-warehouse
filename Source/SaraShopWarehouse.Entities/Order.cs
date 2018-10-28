@@ -3,8 +3,9 @@
 namespace SaraShopWarehouse.Entities
 {
     public class Order : IOrder
+
     {
-        public int OrderId { get; set; }
+        public int Id { get; set; }
         public int ProductId { get; set; }
         public int ProductAmount { get; set; }
         public OrderEnum OrderType { get; set; }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-//import OrderDetailsModal from "./orderDetailsModal";
+import { connect } from 'react-redux';
+import OrderDetailsModal from "./OrderDetailsModal";
+import axios from "axios";
 
-export class Orders extends Component {
+class Orders extends Component {
     displayName = Orders.name
 
     constructor(props) {
@@ -23,11 +25,7 @@ export class Orders extends Component {
 
     processOrder = (id) => {
         
-        fetch('api/{id}')
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ orders: data, loading: false });
-            });
+        console.log(id);
 
     }
 
@@ -69,7 +67,7 @@ export class Orders extends Component {
                 <tbody>
                     {orders.map(order =>
                         <tr onClick={() => this.getOrderInfo(order)}> 
-                            <td>{order.orderId ? order.orderId : null}</td>
+                            <td>{order.id ? order.id : null}</td>
                             <td>{order.productName ? order.productName : null}</td>
                             <td>{order.productDescription ? order.productDescription : null}</td>
                             <td>{order.orderType == 0 ? "Receipt" : "Invoice"}</td>
@@ -91,13 +89,13 @@ export class Orders extends Component {
             <div>
                 <h1>All Orders!!</h1>
                 {contents}
+               <Modal isOpen={this.state.openModal} onClose={this.closeModal}>
+                    <OrderDetailsModal title="Order Details" bsSize="large" aria-labelledby="contained-modal-title-lg" order={this.state.order} />
+               </Modal>
             </div>
         );
     }
 
 }
+export default Orders;
 
-               //<Modal isOpen={this.state.openModal} onClose={this.closeModal}>
-                //    <OrderDetailsModal title="Order Details" order={this.state.order} />
-                //</Modal>
-    

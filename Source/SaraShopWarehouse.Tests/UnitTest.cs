@@ -14,13 +14,13 @@ namespace SaraShopWarehouse.Tests
         {
             //var order = new IOrder;
             //{
-            //    OrderId = 1,
+            //    Id = 1,
             //    ProcessedAt = DateTimeOffset.Now()
             //};
 
             //var mockOrderRepo = Substitute.For<IOrderRepo>();
 
-            //mockOrderRepo.GetOrderById(order.OrderId).Returns(order);
+            //mockOrderRepo.GetOrderById(order.Id).Returns(order);
             //var OrderService = new OrderService(mockOrderRepo);
 
 

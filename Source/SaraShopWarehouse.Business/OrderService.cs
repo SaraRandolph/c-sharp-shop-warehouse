@@ -14,19 +14,19 @@ namespace SaraShopWarehouse.Business
             _orderRepo = orderRepo;
         }
 
-        public List<Order> GetAllOrders()
+        public List<IOrder> GetAllOrders()
         {
             return _orderRepo.GetAllOrders();
         }
 
-        public Order GetOrderById(int orderId)
+        public IOrder GetOrderById(int id)
         {
-            return _orderRepo.GetOrderById(orderId);
+            return _orderRepo.GetOrderById(id);
         }
 
-        public Order ProcessOrder(Order order)
+        public IOrder ProcessOrder(IOrder order)
         {
-            var currentOrder = GetOrderById(order.OrderId);
+            var currentOrder = GetOrderById(order.Id);
             if(currentOrder == null) { throw new Exception("Order not found"); }
 
             if (currentOrder.ProcessedAt != null)
@@ -38,6 +38,16 @@ namespace SaraShopWarehouse.Business
             _orderRepo.UpdateOrder(currentOrder);
 
             return currentOrder;
+        }
+
+        public IOrder UpdateOrder(Order order)
+        {
+            return _orderRepo.UpdateOrder(order);
+        }
+
+        public IOrder CreateOrder(Order order)
+        {
+            return _orderRepo.CreateOrder(order);
         }
     }
 }

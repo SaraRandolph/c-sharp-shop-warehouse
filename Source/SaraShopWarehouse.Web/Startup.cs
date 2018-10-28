@@ -9,7 +9,7 @@ using SaraShopWarehouse.Business;
 using SaraShopWarehouse.Data;
 using System.Data;
 
-namespace SaraShowWarehouse.Web
+namespace SaraShopWarehouse.Web
 {
     public class Startup
     {
@@ -34,7 +34,6 @@ namespace SaraShowWarehouse.Web
             {
                 configuration.RootPath = "ClientApp/build";
             });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

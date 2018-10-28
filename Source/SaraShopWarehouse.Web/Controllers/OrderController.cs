@@ -8,12 +8,11 @@ using SaraShopWarehouse.Entities;
 
 namespace SaraShowWarehouse.Web.Controllers
 {
- 
-
     [Route("api/[controller]")]
+    [ApiController]
     public class OrderController : Controller
     {
-        private OrderService _orderService;
+        private readonly OrderService _orderService;
 
         public OrderController(OrderService orderService)
         {
@@ -21,24 +20,35 @@ namespace SaraShowWarehouse.Web.Controllers
         }
 
         [HttpGet]
-        public List<Order> Orders()
+        public List<IOrder> Orders()
         {
             return _orderService.GetAllOrders();
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetOrderById(int id)
+        [HttpPut]
+        public IOrder UpdateOrder([FromBody] Order order)
         {
-            return Ok(_orderService.GetOrderById(id));
+            return _orderService.UpdateOrder(order);
         }
 
-        [HttpPost]
-        public IActionResult ProcessOrder([FromBody]int id)
+        [HttpPut("{id}")]
+        public IActionResult ProcessOrder(int id)
         {
             var order = _orderService.GetOrderById(id);
             _orderService.ProcessOrder(order);
 
             return Ok();
+        }
+
+        [HttpPost]
+        public IOrder Create([FromBody] Order order)
+        {
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+
+            return _orderService.CreateOrder(order);
         }
 
     }

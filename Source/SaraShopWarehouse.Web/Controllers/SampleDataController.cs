@@ -4,8 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-
-namespace SaraShowWarehouse.Web.Controllers
+namespace SaraShopWarehouse.Web.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller
@@ -16,12 +15,12 @@ namespace SaraShowWarehouse.Web.Controllers
         };
 
         [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts()
+        public IEnumerable<WeatherForecast> WeatherForecasts(int startDateIndex)
         {
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
-                DateFormatted = DateTime.Now.AddDays(index).ToString("d"),
+                DateFormatted = DateTime.Now.AddDays(index + startDateIndex).ToString("d"),
                 TemperatureC = rng.Next(-20, 55),
                 Summary = Summaries[rng.Next(Summaries.Length)]
             });
@@ -43,4 +42,3 @@ namespace SaraShowWarehouse.Web.Controllers
         }
     }
 }
-

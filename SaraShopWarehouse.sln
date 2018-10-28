@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShowWarehouse.Web", "Source\SaraShowWarehouse.Web\SaraShowWarehouse.Web.csproj", "{679E5DAD-3EBC-419B-B6EC-A2C343639322}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaraShopWarehouse.Data", "Source\SaraShopWarehouse.Data\SaraShopWarehouse.Data.csproj", "{4E6BC863-BEA8-45CA-B110-CFF7649D1EB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShopWarehouse.Data", "Source\SaraShopWarehouse.Data\SaraShopWarehouse.Data.csproj", "{4E6BC863-BEA8-45CA-B110-CFF7649D1EB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaraShopWarehouse.Entities", "Source\SaraShopWarehouse.Entities\SaraShopWarehouse.Entities.csproj", "{71482ACF-1564-4770-8288-70B773355820}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShopWarehouse.Entities", "Source\SaraShopWarehouse.Entities\SaraShopWarehouse.Entities.csproj", "{71482ACF-1564-4770-8288-70B773355820}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaraShopWarehouse.Business", "Source\SaraShopWarehouse.Business\SaraShopWarehouse.Business.csproj", "{E06E603C-7590-4A55-A2E3-79358EDCE3CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShopWarehouse.Business", "Source\SaraShopWarehouse.Business\SaraShopWarehouse.Business.csproj", "{E06E603C-7590-4A55-A2E3-79358EDCE3CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaraShopWarehouse.Tests", "Source\SaraShopWarehouse.Tests\SaraShopWarehouse.Tests.csproj", "{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShopWarehouse.Tests", "Source\SaraShopWarehouse.Tests\SaraShopWarehouse.Tests.csproj", "{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShopWarehouse.Web", "Source\SaraShopWarehouse.Web\SaraShopWarehouse.Web.csproj", "{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{679E5DAD-3EBC-419B-B6EC-A2C343639322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{679E5DAD-3EBC-419B-B6EC-A2C343639322}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{679E5DAD-3EBC-419B-B6EC-A2C343639322}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{679E5DAD-3EBC-419B-B6EC-A2C343639322}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E6BC863-BEA8-45CA-B110-CFF7649D1EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E6BC863-BEA8-45CA-B110-CFF7649D1EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E6BC863-BEA8-45CA-B110-CFF7649D1EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

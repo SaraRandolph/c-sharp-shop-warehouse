@@ -1,17 +1,16 @@
 import React, { Component } from "react";
+import { bindActionCreators } from 'redux';
+import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
+import { actionCreators } from '../store/WeatherForecasts';
 
 class OrderDetailsModal extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-          
-        }
+
     }
 
- 
-
-    renderTitle() {
+     renderTitle() {
         return (
             <div>
                 <h4 className="modal-title">
@@ -44,14 +43,15 @@ class OrderDetailsModal extends Component {
     }
 
     render() {
+        console.log(this.props);
         let { order } = this.props;
 
        return (
-            <div>
+           <div className="row">
                 {this.renderTitle()}
-                <form className="modal-form">
+               <form className="modal">
                    <div className="body-content-partial">
-                       <h1> Product Id = {order.productId} </h1>
+                       <h1> Product Id = {order.productName} </h1>
                         <div className="form-group">
                             <div className="field-label">
                                 Product Name
@@ -61,6 +61,7 @@ class OrderDetailsModal extends Component {
                                    label="productName"
                                    name="productName"
                                    component="input"
+                                   value={order.productName}
                                />
                             </div>
                        </div>
@@ -85,7 +86,8 @@ class OrderDetailsModal extends Component {
 }
 
 
+export default reduxForm({
+    form: "OrderDetailsForm"
+})(OrderDetailsModal);
 
-export default OrderDetailsModal({
-    form: 'simple' 
-})(OrderDetailsModal)
+
