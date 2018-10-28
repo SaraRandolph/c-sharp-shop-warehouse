@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaraShopWarehouse.Business"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaraShopWarehouse.Tests", "Source\SaraShopWarehouse.Tests\SaraShopWarehouse.Tests.csproj", "{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShopWarehouse.Web", "Source\SaraShopWarehouse.Web\SaraShopWarehouse.Web.csproj", "{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaraShopWarehouse.RazorWeb", "Source\SaraShopWarehouse.RazorWeb\SaraShopWarehouse.RazorWeb.csproj", "{865E3077-36EE-4D76-B12D-8BF28F675592}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BF9117A-B3F3-4DDC-AF03-0B4A30D69786}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3A806D9-D071-4F3D-8756-6BFE9748E9CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{865E3077-36EE-4D76-B12D-8BF28F675592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{865E3077-36EE-4D76-B12D-8BF28F675592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{865E3077-36EE-4D76-B12D-8BF28F675592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{865E3077-36EE-4D76-B12D-8BF28F675592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
