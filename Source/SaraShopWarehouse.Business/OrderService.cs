@@ -31,7 +31,7 @@ namespace SaraShopWarehouse.Business
 
             if (currentOrder.ProcessedAt != null)
             {
-                throw new Exception("Order already processed ");
+                throw new Exception("Order already processed!");
             }
 
             currentOrder.ProcessedAt = order.ProcessedAt ?? DateTimeOffset.Now;

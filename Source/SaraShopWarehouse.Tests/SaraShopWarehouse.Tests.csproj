@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SaraShopWarehouse.Business\SaraShopWarehouse.Business.csproj" />
     <ProjectReference Include="..\SaraShopWarehouse.Data\SaraShopWarehouse.Data.csproj" />
     <ProjectReference Include="..\SaraShopWarehouse.Entities\SaraShopWarehouse.Entities.csproj" />
   </ItemGroup>

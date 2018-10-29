@@ -3,6 +3,7 @@ using SaraShopWarehouse.Entities;
 using SaraShopWarehouse.Data;
 using NSubstitute;
 using System;
+using SaraShopWarehouse.Business;
 
 namespace SaraShopWarehouse.Tests
 {
@@ -12,25 +13,58 @@ namespace SaraShopWarehouse.Tests
         [TestMethod]
         public void Only_Process_Order_Once()
         {
-            //var order = new IOrder;
-            //{
-            //    Id = 1,
-            //    ProcessedAt = DateTimeOffset.Now()
-            //};
+            var order = new Order
+            {
+                Id = 1,
+                ProcessedAt = DateTimeOffset.Now
+            };
 
-            //var mockOrderRepo = Substitute.For<IOrderRepo>();
+            var mockOrderRepo = Substitute.For<IOrderRepo>();
 
-            //mockOrderRepo.GetOrderById(order.Id).Returns(order);
-            //var OrderService = new OrderService(mockOrderRepo);
+            mockOrderRepo.GetOrderById(order.Id).Returns(order);
+            var orderService = new OrderService(mockOrderRepo);
 
 
+            //act
+            try
+            {
+                var expectedOrder = orderService.ProcessOrder(order);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Order already processed!", ex.Message);
+                return;
+            }
+            //asserts
+            Assert.Fail("Shouldn't have gotten here");
 
-            Assert.IsTrue(true);
         }
 
-        public void Cant_Process_Order_Already_Processed()
+        [TestMethod]
+        public void Can_Process_Order()
         {
-            Assert.IsTrue(true);
+            //arrange
+            var order = new Order
+            {
+                Id = 1
+            };
+
+            var mockOrderRepo = Substitute.For<IOrderRepo>();
+            mockOrderRepo.GetOrderById(order.Id).Returns(new Order
+            {
+                Id = 1,
+                ProcessedAt = null
+            });
+
+            var orderService = new OrderService(mockOrderRepo);
+
+            //act
+            var expectedOrder = orderService.ProcessOrder(order);
+
+            //assert
+            Assert.IsNull(order.ProcessedAt);
+            mockOrderRepo.Received(1).GetOrderById(order.Id);
+            mockOrderRepo.ReceivedWithAnyArgs(1).UpdateOrder(expectedOrder);
         }
     }
 }
