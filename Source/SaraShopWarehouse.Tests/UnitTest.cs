@@ -41,6 +41,38 @@ namespace SaraShopWarehouse.Tests
         }
 
         [TestMethod]
+        public void Cant_Update_Order_Thats_Been_Processed()
+        {
+            var order = new Order
+            {
+                Id = 1,
+                ProcessedAt = DateTimeOffset.Now
+            };
+
+            var mockOrderRepo = Substitute.For<IOrderRepo>();
+
+            mockOrderRepo.GetOrderById(order.Id).Returns(order);
+            var orderService = new OrderService(mockOrderRepo);
+
+
+            //act
+            try
+            {
+                var expectedOrder = orderService.UpdateOrder(order);
+            }
+            catch (Exception ex)
+            {
+                Assert.AreEqual("Can't edit an already processed order!", ex.Message);
+                return;
+            }
+            //asserts
+            Assert.Fail("Shouldn't have gotten here");
+
+        }
+
+
+
+        [TestMethod]
         public void Can_Process_Order()
         {
             //arrange

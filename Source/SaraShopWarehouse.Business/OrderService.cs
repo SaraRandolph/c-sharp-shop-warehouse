@@ -42,7 +42,14 @@ namespace SaraShopWarehouse.Business
 
         public IOrder UpdateOrder(Order order)
         {
+            if(order.ProcessedAt != null)
+            {
+                throw new Exception("Can't edit an already processed order!");
+            }
+            else
+            {
             return _orderRepo.UpdateOrder(order);
+            }
         }
 
         public IOrder CreateOrder(Order order)
